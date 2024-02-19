@@ -1,15 +1,11 @@
+const chars =
+    "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890";
+
 function generateHash(length) {
-    const chars =
-        "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890";
-    const randomArray = Array.from(
+   return Array.from(
         { length: length },
         (v, k) => chars[Math.floor(Math.random() * chars.length)]
-    );
-
-    const randomString = randomArray.join("");
-    return randomString;
+    ).join('');
 }
 
-module.exports = {
-    generateHash
-}
+module.exports = { generateHash }

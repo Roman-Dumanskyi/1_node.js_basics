@@ -1,3 +1,3 @@
 const utils = require('./utils');
 
-console.log(utils.generateHash(150))
+console.log(utils.generateHash(20));
