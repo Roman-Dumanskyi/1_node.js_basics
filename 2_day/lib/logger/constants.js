@@ -1,17 +1,27 @@
-const level = {
+const logLevel = {
   ERROR: 'ERROR',
   WARN: 'WARN',
-  INFO: 'INFO'
+  INFO: 'INFO',
+  DEBUG: 'DEBUG',
+  TRACE: 'TRACE'
 };
 
 const scoreLevel = {
-  [level.ERROR]: 1,
-  [level.WARN]: 2,
-  [level.INFO]: 3
+  [logLevel.ERROR]: 1,
+  [logLevel.WARN]: 2,
+  [logLevel.INFO]: 3,
+  [logLevel.DEBUG]: 4,
+  [logLevel.TRACE]: 5,
 };
 
 const appender = {
-  CONSOLE: 'CONSOLE'
+  CONSOLE: 'CONSOLE',
+  FILE: 'FILE'
 };
 
-export { level, scoreLevel, appender };
+const customEnvProps = {
+  LOG_LEVEL: 'logLevel',
+  LOG_APPENDER: 'appender'
+};
+
+export { logLevel, scoreLevel, appender, customEnvProps };

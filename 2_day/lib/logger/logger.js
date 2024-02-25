@@ -1,16 +1,22 @@
 import config from './config.js.js';
-import { scoreLevel, level } from './constants.js';
+import { scoreLevel, logLevel } from './constants.js';
 import * as appenderStrategy from "./appenderStrategy.js"
 
 const logger = (category) => ({
   info: (message) => {
-    executeLog(level.INFO, category, message);
+    executeLog(logLevel.INFO, category, message);
   },
   warn: (message) => {
-    executeLog(level.WARN, category, message);
+    executeLog(logLevel.WARN, category, message);
   },
   error: (message) => {
-    executeLog(level.ERROR, category, message);
+    executeLog(logLevel.ERROR, category, message);
+  },
+  debug: (message) => {
+    executeLog(logLevel.DEBUG, category, message);
+  },
+  trace: (message) => {
+    executeLog(logLevel.TRACE, category, message);
   }
 });
 
