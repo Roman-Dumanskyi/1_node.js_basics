@@ -1,7 +1,7 @@
-import * as constants from './constants.js';
-import config from './config.js';
-import consoleAppender from './appenders/console.js';
-import fileAppender from './appenders/file.js';
+import * as constants from '../constants.js';
+import config from '../config/config.js';
+import consoleAppender from './console.js';
+import fileAppender from './file.js';
 
 const appenders = {
   [constants.appender.CONSOLE]: consoleAppender,

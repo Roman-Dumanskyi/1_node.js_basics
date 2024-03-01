@@ -1,4 +1,4 @@
 {
-  "logLevel": "Error",
-  "appender": "file"
+  "logLevel": "warn",
+  "appender": "console"
 }
