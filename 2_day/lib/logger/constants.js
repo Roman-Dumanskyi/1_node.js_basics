@@ -19,9 +19,9 @@ const appender = {
   FILE: 'FILE'
 };
 
-const customEnvProps = {
+const customProps = {
   LOG_LEVEL: 'logLevel',
   LOG_APPENDER: 'appender'
 };
 
-export { logLevel, scoreLevel, appender, customEnvProps };
+export { logLevel, scoreLevel, appender, customProps };
