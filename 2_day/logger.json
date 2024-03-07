@@ -1,4 +1,6 @@
 {
   "logLevel": "warn",
-  "appender": "console"
+  "appenders": ["csv"],
+  "formatter": "json",
+  "delimetter": "**"
 }

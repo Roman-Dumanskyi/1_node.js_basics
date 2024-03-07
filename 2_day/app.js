@@ -19,8 +19,8 @@ import { add } from './handler.js';
 
 const log = logger.getLogger('app.js');
 
-log.info(color);
-log.warn(fruit);
-log.error('ERROR occur: My log');
-
-add(3, 5);
+log.info(color.toString(), 'test');
+// log.warn(fruit);
+// log.error('ERROR occur: My log');
+//
+// add(3, 5);

@@ -1,32 +1,34 @@
 import config from './config/config.js';
 import { scoreLevel, logLevel } from './constants.js';
 import * as appenderStrategy from "./appenders/appenderStrategy.js"
+import { concatMsgParameters } from './helper.js';
 
 const logger = (category) => ({
-  info: (message) => {
+  info: (...message) => {
     executeLog(logLevel.INFO, category, message);
   },
-  warn: (message) => {
+  warn: (...message) => {
     executeLog(logLevel.WARN, category, message);
   },
-  error: (message) => {
+  error: (...message) => {
     executeLog(logLevel.ERROR, category, message);
   },
-  debug: (message) => {
+  debug: (...message) => {
     executeLog(logLevel.DEBUG, category, message);
   },
-  trace: (message) => {
+  trace: (...message) => {
     executeLog(logLevel.TRACE, category, message);
   }
 });
 
-const appender = appenderStrategy.getAppender();
+const appenders = appenderStrategy.getAppenders();
 
-function executeLog(level, category, message) {
+function executeLog(level, category, message = []) {
   if (scoreLevel[level] <= config.scoreLevel) {
-    appender.log(Date.now(), level, category, message);
+    appenders.forEach(a => a.log(Date.now(), level, category, concatMsgParameters(message)));
   }
 }
+
 
 export default {
   getLogger(category) {

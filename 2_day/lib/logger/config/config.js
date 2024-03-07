@@ -5,7 +5,9 @@ import { setFileConfig } from './fileConfig.js';
 const defaultConfig = {
   logLevel: constants.logLevel.INFO,
   scoreLevel: constants.scoreLevel[constants.logLevel.INFO],
-  appender: constants.appender.CONSOLE
+  appenders: [constants.appender.CONSOLE],
+  formatter: constants.formatter.DEFAULT,
+  delimetter: constants.DELIMETTER
 };
 
 function enrichConfig(config) {

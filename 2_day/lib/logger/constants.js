@@ -16,12 +16,21 @@ const scoreLevel = {
 
 const appender = {
   CONSOLE: 'CONSOLE',
-  FILE: 'FILE'
+  FILE: 'FILE',
+  CSV: 'CSV'
 };
 
 const customProps = {
   LOG_LEVEL: 'logLevel',
-  LOG_APPENDER: 'appender'
+  LOG_FORMAT: 'formatter'
 };
 
-export { logLevel, scoreLevel, appender, customProps };
+const formatter = {
+  JSON: "JSON",
+  DEFAULT:"DEFAULT",
+  CSV: 'CSV'
+}
+
+const DELIMETTER = ',';
+
+export { logLevel, scoreLevel, appender, customProps, formatter, DELIMETTER };
