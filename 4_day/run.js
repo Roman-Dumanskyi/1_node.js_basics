@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 
-// const ee = new EventEmitter();
+const ee = new EventEmitter();
 //
 // const listenerOnce = () => {
 //   console.log('EVENT ONCE');
