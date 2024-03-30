@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  I'm user Roman
+
+<script>
+  (async () => {
+    const promise = fetch('/user/all');
+    const response = await promise;
+    const users = await response.json();
+
+    console.log(users);
+
+    document.getElementById('users').textContent = JSON.stringify(users);
+  })();
+</script>
+
+<div id="users"></div>
+</body>
+</html>

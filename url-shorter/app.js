@@ -1,46 +1,35 @@
 import express from 'express';
-import service from './service.js';
-import AuthMiddleware from './authMiddleware.js';
-import userRouter from './userRouter.js';
+import UserController from './controllers/UserController.js';
 
 const app = express();
-const router = new express.Router();
 
-app.use('/user', userRouter);
+app.use(express.json());
 
-app.use('/info', (req, res, next) => {
-  console.log(req.path);
-
-  next();
+app.all('/', (req, res) => {
+  res.send('Works!');
 });
 
-app.use('/info', (req, res, next) => {
-  req.session = {
-    status: 'created'
-  };
+app.use('/user', new UserController());
 
-  if (req.method === 'GET') {
-    next();
-  }
+// app.use(AuthMiddleware);
 
+app.use((err, req, res, next) => {
+  console.log(err);
+
+  res.status(500).send(err.message);
 });
 
-app.use(AuthMiddleware);
+app.set('views', 'view');
+app.set('view engine', 'ejs');
 
-app.post('/add', express.json(),
-  (req, res) => {
-    console.log(req.body);
-
-    const code = 'QWER';
-    service.add(code, req.body);
-
-    res.json({ code });
-  });
-
-app.get('/info/:code', (req, res, next) => {
-  const data = service.get(req.params.code);
-  res.setHeader('Session', JSON.stringify(req.session));
-  res.json(data);
+app.get('/get_pug', (req, res) => {
+  res.render('index.pug', {name: 'Roman'});
 });
 
-app.listen(3200, () => console.log('Server started'));
+app.get('/get_ejs', (req, res) => {
+  res.render('index.ejs', {password: 'qwerty'});
+});
+
+app.use('/files', express.static('view'));
+
+app.listen(3200, () => console.log('Server started, port: http://127.0.0.1:3200'));
