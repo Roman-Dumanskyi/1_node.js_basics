@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users</title>
+</head>
+<body>
+    <h2>Users</h2>
+    <hr>
+    <h4>Create user</h4>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    <label for="password">Password:</label>
+    <input type="text" id="password" name="password">
+    <input id="create-user" type="button" value="Create user">
+    <hr>
+    <h4>Existed users</h4>
+        <% for (let user of users) { %>
+            <p>
+                <b>User ID: </b><%= user.id %>
+                <b>User name: </b><%= user.name %>
+            </p>
+        <% } %>
+<script>
+  const userName = document.getElementById('name');
+  const userPassword = document.getElementById('password');
+  const createUsrBtn = document.getElementById('create-user');
+  const urlPage = document.getElementById('url-page');
+
+  createUsrBtn.addEventListener('click', () => {
+    (async () => {
+      await fetch('/users/create', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: userName.value, password: userPassword.value })
+      });
+    })();
+  });
+</script>
+</body>
+</html>

@@ -1,11 +1,15 @@
-import urserService from '../data-bases/usersDB.js';
+import UserService from '../services/UserService.js';
 
-const users = urserService.getUsersList();
 export default (req, res, next) => {
+  const userService = new UserService();
   const auth = req.header('Authorization').toString();
+  const users = userService.getAllUsers();
   let ifExist = false;
 
-  users.forEach(user => ifExist = user.name === auth);
+  for(let user of users) {
+    ifExist = user.name === auth
+  }
+
   if(ifExist) {
     next();
 
@@ -13,5 +17,4 @@ export default (req, res, next) => {
   }
 
   res.status(404).end('User not exist');
-
 }
