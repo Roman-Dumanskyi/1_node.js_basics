@@ -1,18 +1,20 @@
 import express from 'express';
-import urlController from './routes/urlController.js';
-import userController from './routes/userController.js';
-import UserMidelware from './midelwares/userMidelware.js';
 import UrlMidelware from './midelwares/urlMidelware.js';
-import codeController from './routes/codeController.js';
+import UserController from './controllers/UserController.js';
+import UrlController from './controllers/UrlController.js';
+import CodeController from './controllers/CodeController.js';
 
 const app = express();
 
-app.use('/create', UserMidelware);
-app.use('/add', UrlMidelware);
+app.use(express.json());
 
-app.use('/add', express.json(), urlController);
-app.use('/create', express.json(), userController);
-app.use('/code', express.json(), codeController);
+app.use('/urls/add', UrlMidelware);
 
+app.use('/urls', new UrlController());
+app.use('/users', new UserController());
+app.use('/code', new CodeController());
+
+app.set('views', 'pages');
+app.set('view engine', 'ejs');
 
 app.listen(3200, () => console.log('Server has been started!'));

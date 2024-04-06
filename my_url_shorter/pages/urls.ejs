@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Urls</title>
+</head>
+<body>
+    <h2>Urls</h2>
+    <hr>
+    <h4>Add url</h4>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    <label for="url">Url:</label>
+    <input type="text" id="url" name="url">
+    <label for="user">User:</label>
+    <input type="text" id="user" name="user">
+    <input id="add-url" type="button" value="Add url">
+    <hr>
+    <h4>Existed urls for that user</h4>
+    <% for (let url of urls) { %>
+        <p>
+            <b>User: </b></b><%= url.user %>
+            <b>Name: </b></b><%= url.name %>
+            <b>URL: </b><%= url.url %>
+        </p>
+    <% } %>
+    <script>
+      const name = document.getElementById('name');
+      const url = document.getElementById('url');
+      const user = document.getElementById('user');
+      const addUrlBtn = document.getElementById('add-url');
+
+
+      addUrlBtn.addEventListener('click', () => {
+        (async () => {
+          await fetch(`/urls/add/${user.value}`, {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': user.value
+            },
+            body: JSON.stringify({ name: name.value, url: url.value })
+          });
+        })();
+      });
+    </script>
+</body>
+</html>
